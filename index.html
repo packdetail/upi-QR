@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pay Lucky via UPI</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #2563eb, #1e3a8a);
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+      padding: 25px;
+      text-align: center;
+      width: 90%;
+      max-width: 360px;
+    }
+    .card h2 {
+      margin: 0;
+      color: #111;
+    }
+    .card p {
+      color: #444;
+      font-size: 14px;
+      margin: 8px 0 16px;
+    }
+    .card img {
+      width: 250px;
+      height: 250px;
+      border-radius: 12px;
+      border: 5px solid #e5e7eb;
+      object-fit: cover;
+    }
+    .pay-btn {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 11px 20px;
+      background: #2563eb;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .pay-btn:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+    .footer {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Pay Lucky</h2>
+    <p>Scan this QR or tap below to pay via UPI</p>
+
+    <img src="upi.jpg" alt="Lucky UPI QR">
+
+    <br>
+    <a id="payBtn" class="pay-btn" href="#">Scan & Pay Now</a>
+    <div class="footer">Secure UPI Payment</div>
+  </div>
+
+  <script>
+    // 🔹 Safe UPI info (won’t show on screen)
+    const upiId = "9798680204@ibl";
+    const name = "Lucky";
+    const amount = ""; // Optional, e.g. "99"
+    const note = "Payment to Lucky";
+
+    // Build UPI link
+    const params = new URLSearchParams();
+    params.set('pa', upiId);
+    params.set('pn', name);
+    if(amount) params.set('am', amount);
+    params.set('tn', note);
+
+    const upiLink = "upi://pay?" + params.toString();
+
+    // Attach link to Pay Now button
+    document.getElementById("payBtn").href = upiLink;
+  </script>
+
+</body>
+</html>
